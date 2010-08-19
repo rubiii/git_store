@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+`rackup #{File.expand_path("../../config.ru", __FILE__)}`
+#`shotgun #{File.expand_path("../../config.ru", __FILE__)} -p 4567` # reload via shotgun

@@ -1,0 +1,11 @@
+= partial :store_value
+= partial :update_value
+
+- if @revision && !@revision.tree.empty?
+  %h2 Keys &amp; values
+  %table
+    - @revision.tree.each do |leaf|
+      %tr{ :class => highlight?(leaf.value) }
+        %td.width.l
+          %code= leaf.file
+        %td= leaf.value

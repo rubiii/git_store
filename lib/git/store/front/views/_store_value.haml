@@ -1,0 +1,6 @@
+%h2 Store a new value
+
+- form_tag "/push" do
+  %label{ :for => "store_key" } Value:
+  = input_tag :text, :name => "value", :id => "store_key", :class => "width m"
+  = submit_tag "store"

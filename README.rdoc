@@ -1,0 +1,15 @@
+= Git::Store
+
+A revision-controlling key/value store based on Git.
+
+== Getting started
+
+Git::Store (the frontend) is based on Sinatra. Just use the config.ru file.
+
+== Need to sleep
+
+Going to release more documentation and a chunky gem tomorrow.
+
+== _why?
+
+It's whyday 2010!

@@ -1,12 +1,10 @@
-require "sinatra"
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
 
-set :env, :production
-set :port, 4567
-disable :run#, :reload
+require "git/store/front"
 
-$:.unshift File.expand_path("../lib", __FILE__)
-require "git_store"
+#log = File.new "sinatra.log", "a"
+#STDOUT.reopen log
+#STDERR.reopen log
 
-require File.expand_path("../app/app", __FILE__)
-
-run Sinatra::Application
+run Git::Store::Front

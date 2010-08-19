@@ -1,0 +1,8 @@
+%h2 Update an existing value
+
+- form_tag "/update", :method => "put" do
+  %label{ :for => "update_key" } Key:
+  = input_tag :text, :name => "key", :id => "update_key", :class => "width l"
+  %label{ :for => "update_value" } Value:
+  = input_tag :text, :name => "value", :id => "update_value", :class => "width m"
+  = submit_tag "update"

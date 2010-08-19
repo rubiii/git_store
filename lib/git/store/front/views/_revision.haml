@@ -1,0 +1,12 @@
+%h2 Revision
+
+%ul.naked
+  - if @revision.parent
+    %li
+      Parent:
+      %a{ :href => "/#{@revision.parent}" }= @revision.parent
+  %li This one: #{@revision.sha}
+  - if @revision.child
+    %li
+      Child:
+      %a{ :href => "/#{@revision.child}" }= @revision.child

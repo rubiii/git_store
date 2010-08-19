@@ -1,11 +1,13 @@
-require "rspec"
-require "git/store"
+require "spec_helper"
+require "git/store/engine"
 
-describe Git::Store do
-  before { `rm -rf .git && git init` }
+describe Git::Store::Engine do
+
+  before(:all) { cd_test_dir }
+  before(:each) { clean_git_repo }
 
   it "should have a global shortcut" do
-    git.should == Git::Store
+    git.should == Git::Store::Engine
   end
 
   it "should store and retrieve values" do
@@ -31,11 +33,17 @@ describe Git::Store do
     git.type_of(commit).should == "commit"
   end
 
-  it "should return the last commit" do
+  it "should retrieve values for a given revision" do
     key = git.push "something"
-    commit = git.update key, "else"
+    revision1 = git.update key, "else"
+    revision2 = git.update key, "whatever"
     
-    git.last_commit.should == commit
+    git.pull(revision1, key).should == "else"
+    git.pull(revision2, key).should == "whatever"
   end
+
+  it "should return a revision"
+
+  it "should return nil if no revision exists"
 
 end
