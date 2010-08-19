@@ -2,6 +2,11 @@
 
 A revision-controlling key/value store based on Git.
 
+== Inspired by
+
+* _why
+* Scott Chacon (http://video2010.scottishrubyconference.com/show_video/11/0)
+
 == Getting started
 
 Git::Store (the frontend) is based on Sinatra. Just use the config.ru file.
