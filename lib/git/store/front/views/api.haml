@@ -34,3 +34,11 @@
       Request: GET
       URL: http://localhost:4567/api/:revision/:key
 %p Returns the value for the given key and revision.
+
+%h3 Remove a value
+%pre
+  %code
+    :preserve
+      Request: DELETE
+      URL: http://localhost:4567/api/:key
+%p Returns the new revision.

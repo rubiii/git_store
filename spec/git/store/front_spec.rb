@@ -48,16 +48,20 @@ describe Git::Store::Front do
 
     it "should create a new value and return its hash" do
       post "/api", :value => "whyday"
-      
-      key = "63996f2ada7cfff6d0943ce0fd33460e159cfd10"
-      last_response.body.should == key
+      last_response.body.should == "63996f2ada7cfff6d0943ce0fd33460e159cfd10"
     end
 
-    it "should update a value and return the revision" do
+    it "should update a value and return the new revision" do
       post "/api", :value => "trady"
-      key = last_response.body
       
-      put "/api", :key => key, :value => "blix"
+      put "/api/#{last_response.body}", :value => "blix"
+      git.type_of(last_response.body).should == "commit"
+    end
+
+    it "should delete a value and return the new revision" do
+      post "/api", :value => "_why"
+      
+      delete "/api/#{last_response.body}"
       git.type_of(last_response.body).should == "commit"
     end
   end

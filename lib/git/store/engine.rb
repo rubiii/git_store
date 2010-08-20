@@ -15,7 +15,7 @@ module Git
           return if value.empty?
           
           key = hash_object value
-          update_index key
+          update_index :add, key
           commit key, write_tree
           key
         end
@@ -24,7 +24,14 @@ module Git
           return if key.empty? || value.empty? || !pull(key)
           
           new_key = hash_object value
-          update_index new_key, key
+          update_index :add, new_key, key
+          commit key, write_tree, Revision.latest
+        end
+
+        def remove(key)
+          return if key.empty? || !pull(key)
+          
+          update_index :remove, key
           commit key, write_tree, Revision.latest
         end
 
@@ -58,9 +65,12 @@ module Git
           `echo "#{value}" | git hash-object -w --stdin`.chomp
         end
 
-        def update_index(hash, file = nil)
-          file ||= hash
-          `git update-index --add --cacheinfo 100644 #{hash} #{file}`
+        def update_index(*args)
+          action = args.shift
+          hash = args.shift
+          file = args.first || hash
+          
+          `git update-index --#{action} --cacheinfo 100644 #{hash} #{file}`
         end
 
         def write_tree

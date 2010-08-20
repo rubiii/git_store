@@ -62,10 +62,16 @@ module Git
 
       # update
       # returns the commit
-      put "/api" do
+      put "/api/:key" do
         revision = git.update params[:key], params[:value]
         halt 404 unless revision
         revision
+      end
+
+      # delete
+      # deletes a value
+      delete "/api/:key" do
+        git.remove params[:key]
       end
 
       # FRONT
@@ -94,6 +100,16 @@ module Git
           flash[:highlight] = params[:value]
         else
           flash[:alert] = "No can do. Please try something else Sir."
+        end
+        
+        redirect "/"
+      end
+
+      delete "/remove" do
+        if revision = git.remove(params[:key])
+          flash[:notice] = "Sir, you removed: #{params[:key]}"
+        else
+          flash[:alert] = "I'm afraid I can't do that Sir."
         end
         
         redirect "/"
