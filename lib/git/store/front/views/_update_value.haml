@@ -2,7 +2,7 @@
 
 - form_tag "/update", :method => "put" do
   %label{ :for => "update_key" } Key:
-  = input_tag :text, :name => "key", :id => "update_key", :class => "width l"
+  = input_tag :text, :name => "key", :id => "update_key"
   %label{ :for => "update_value" } Value:
-  = input_tag :text, :name => "value", :id => "update_value", :class => "width m"
+  = input_tag :text, :name => "value", :id => "update_value"
   = submit_tag "update"

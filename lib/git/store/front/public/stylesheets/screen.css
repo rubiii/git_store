@@ -28,10 +28,7 @@ pre, code { background:#f8f8ff; border:1px solid #ddd; color:#444; font:14px "In
     pre code { border:0; padding:0; }
 
 label { margin-right:5px; }
-input { margin-right:15px; }
-
-.width.m { width:220px; }
-.width.l { width:325px; }
+input[type="text"] { margin-right:15px; width:290px; }
 
 #content { margin:0 auto; width:60em; }
 
