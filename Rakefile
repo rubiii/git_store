@@ -3,7 +3,6 @@ begin
 
   RSpec::Core::RakeTask.new do |t|
     t.spec_opts = %w(-fd -c)
-    t.warning = true
   end
 rescue LoadError
   task :spec do
