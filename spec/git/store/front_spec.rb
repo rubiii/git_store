@@ -19,50 +19,60 @@ describe Git::Store::Front do
     # setup test data
     @chunky = git.push "chunky"
     @bacon = git.push "bacon"
-    @rev1 = git.update @chunky, "hackety"
-    @rev2 = git.update @chunky, "hack"
+    @first_revision = git.update @chunky, "hackety"
+    @second_revision = git.update @chunky, "hack"
   end
 
   def app
     Git::Store::Front
   end
 
-  context "/api" do
+  context "GET /api/:key" do
     it "should return a value" do
       get "/api/#{@chunky}"
       last_response.body.should == "hack"
     end
 
-    it "should return a value for a given revision" do
-      get "/api/#{@rev1}/#{@chunky}"
-      last_response.body.should == "hackety"
-    end
-
-    it "should return a 404 in case a value doesn't exist" do
+    it "should return 404 in case a value doesn't exist" do
       get "/api/undefined"
       last_response.status.should == 404
-      
+    end
+  end
+
+  context "GET /api/:revision/:key" do
+    it "should return a value for a given revision" do
+      get "/api/#{@first_revision}/#{@chunky}"
+      last_response.body.should == "hackety"
+    end
+    
+    it "should return 404 in case a value doesn't exist" do
       get "/api/undefined/undefined"
       last_response.status.should == 404
     end
+  end
 
+  context "POST /api" do
     it "should create a new value and return its hash" do
       post "/api", :value => "whyday"
       last_response.body.should == "63996f2ada7cfff6d0943ce0fd33460e159cfd10"
     end
+  end
 
+  context "PUT /api/:key" do
     it "should update a value and return the new revision" do
       post "/api", :value => "trady"
       
       put "/api/#{last_response.body}", :value => "blix"
-      git.type_of(last_response.body).should == "commit"
+      git.commit?(last_response.body).should be_true
     end
+  end
 
+  context "DELETE /api/:key" do
     it "should delete a value and return the new revision" do
       post "/api", :value => "_why"
       
       delete "/api/#{last_response.body}"
-      git.type_of(last_response.body).should == "commit"
+      git.commit?(last_response.body).should be_true
     end
   end
 

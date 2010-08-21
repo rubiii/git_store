@@ -30,20 +30,41 @@ describe Git::Store::Engine do
     key = git.push "something"
     commit = git.update key, "else"
     
-    git.type_of(commit).should == "commit"
+    git.commit?(commit).should be_true
   end
 
   it "should retrieve values for a given revision" do
     key = git.push "something"
-    revision1 = git.update key, "else"
-    revision2 = git.update key, "whatever"
+    first_revision = git.update key, "else"
+    second_revision = git.update key, "whatever"
     
-    git.pull(revision1, key).should == "else"
-    git.pull(revision2, key).should == "whatever"
+    git.pull(first_revision, key).should == "else"
+    git.pull(second_revision, key).should == "whatever"
   end
 
-  it "should return a revision"
+  describe ".revision" do
+    it "should return a revision" do
+      key = git.push "something"
+      first_revision = git.update key, "else"
+      second_revision = git.update key, "whatever"
+      
+      revision = git.revision first_revision
+      
+      revision.should be_a(Git::Store::Revision)
+      revision.sha.should == first_revision
+    end
 
-  it "should return nil if no revision exists"
+    it "should default to return the HEAD revision" do
+      key = git.push "something"
+      first_revision = git.update key, "else"
+      second_revision = git.update key, "whatever"
+      
+      git.revision.sha.should == second_revision
+    end
+
+    it "should return +nil+ in case a given revision does not exist" do
+      git.revision("undefined").should be_nil
+    end
+  end
 
 end

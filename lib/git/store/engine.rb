@@ -39,11 +39,11 @@ module Git
 
         def revision(revision = nil)
           revision ||= Revision.head
-          Revision.new revision if revision
+          Revision.new revision if commit? revision
         end
 
-        def type_of(key)
-          `git cat-file -t #{key}`.chomp
+        def commit?(key)
+          `git cat-file -t #{key}`.chomp == "commit"
         end
 
 #        def parent(commit)

@@ -75,14 +75,19 @@ module Git
 
       # FRONT
 
-      get "/" do
-        @revision = git.revision
-        haml :index
-      end
+#      get "/" do
+#        @revision = git.revision
+#        haml :index
+#      end
 
-      get "/:revision" do
+      get "/:revision?" do
         @revision = git.revision params[:revision]
-        haml :index
+        
+        if @revision
+          haml :index
+        else
+          haml :not_found
+        end
       end
 
       post "/push" do
