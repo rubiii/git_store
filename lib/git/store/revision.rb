@@ -14,11 +14,6 @@ module Git
         revision
       end
 
-      def self.new(revision = nil)
-        revision ||= head
-        super revision if revision
-      end
-
       def initialize(revision)
         @sha = revision
       end

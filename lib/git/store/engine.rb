@@ -38,7 +38,8 @@ module Git
         end
 
         def revision(revision = nil)
-          Revision.new revision
+          revision ||= Revision.head
+          Revision.new revision if revision
         end
 
         def type_of(key)
