@@ -25,7 +25,7 @@ module Git
       end
 
       def leafs
-        @leafs ||= object.inject([]) { |memo, line| memo << Leaf.new(revision, line.strip.split(" ")) }.sort
+        @leafs ||= [object].inject([]) { |memo, line| memo << Leaf.new(revision, line.strip.split(" ")) }.sort
       end
 
       def object
