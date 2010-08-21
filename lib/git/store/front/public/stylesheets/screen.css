@@ -31,6 +31,7 @@ label { margin-right:5px; }
 input[type="text"] { margin-right:15px; width:290px; }
 
 #content { margin:0 auto; width:60em; }
+#tree td:first-child { width:340px; }
 
 div.flash { border-width:1px; border-style:dashed; padding:1em 2em; }
 

@@ -17,10 +17,10 @@
 
 - if @revision && !@revision.tree.empty?
   %h2 Keys &amp; values
-  %table
+  %table#tree
     - @revision.tree.each do |leaf|
       %tr{ :class => highlight?(leaf.value) }
-        %td.width.l
+        %td
           %code= leaf.file
         %td= leaf.value
 
