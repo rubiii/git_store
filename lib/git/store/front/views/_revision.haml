@@ -5,7 +5,7 @@
     %li
       Parent:
       %a{ :href => "/#{@revision.parent}" }= @revision.parent
-  %li This one: #{@revision.sha}
+  %li Current: #{@revision.sha}
   - if @revision.child
     %li
       Child:

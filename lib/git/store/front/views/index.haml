@@ -1,3 +1,16 @@
+- content_for :header do
+  %h1= link_to "Hi, I'am your <strong>Git Store</strong>", "/"
+  %p
+    My job is to store values and hand out keys for you to retrieve them.
+    I'm based on #{link_to("Git", "http://git-scm.com")} and heavily inspired
+    by #{link_to("GitHub", "http://github.com")}.
+
+= partial :getting_started unless @revision
+
+%h2
+  Interact with my
+  = link_to "API", "/api"
+
 = partial :store_value
 = partial :update_value
 = partial :remove_value
@@ -10,3 +23,5 @@
         %td.width.l
           %code= leaf.file
         %td= leaf.value
+
+= partial :revision if @revision

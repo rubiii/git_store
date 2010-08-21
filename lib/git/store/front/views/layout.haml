@@ -7,20 +7,7 @@
 
   %body
     #content
-      %h1
-        Hi, I'am your
-        %strong Git Store
-      
-      %p
-        My job is to store values and hand out keys for you to retrieve them. I'm based on
-        #{link_to("Git", "http://git-scm.com")}, so I'm not the fastest store in town.
-        %br
-        But guess what? I can also update/remove values and let you retrieve specific revisions of a value.
-      
+      = yield_content :header
       = partial :flash if flash[:notice] || flash[:alert]
-      = partial :getting_started unless @revision || @api
-      
       = yield
-      
-      = partial :revision if @revision
       = partial :footer

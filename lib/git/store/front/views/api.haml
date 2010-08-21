@@ -1,6 +1,9 @@
-%h2 Chunky API
+- content_for :header do
+  %h1= link_to "Explore the <strong>Git Store API</strong>", "/"
+  %p
+    My API allows you to access all my features via HTTP.
 
-%h3 Store a new value
+%h3 Store values
 %pre
   %code
     :preserve
@@ -10,7 +13,7 @@
 
 %p Returns a key for you to retrieve the value.
 
-%h3 Update an existing value
+%h3 Update values
 %pre
   %code
     :preserve
@@ -19,7 +22,7 @@
       Params: { :key => "b806319115324c60d67eba7454007ddb27479616", :value => "my first value" }
 %p Returns the new revision.
 
-%h3 Retrieve a value
+%h3 Retrieve values
 %pre
   %code
     :preserve
@@ -27,7 +30,7 @@
       URL: http://localhost:4567/api/:key
 %p Returns the value for the given key.
 
-%h3 Retrieve a value from a specific revision
+%h3 Retrieve values from a specific revision
 %pre
   %code
     :preserve
@@ -35,7 +38,7 @@
       URL: http://localhost:4567/api/:revision/:key
 %p Returns the value for the given key and revision.
 
-%h3 Remove a value
+%h3 Remove values
 %pre
   %code
     :preserve

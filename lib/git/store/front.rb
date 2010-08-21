@@ -34,7 +34,6 @@ module Git
       # API
 
       get "/api" do
-        @api = true
         haml :api
       end
 
@@ -89,17 +88,17 @@ module Git
       post "/push" do
         key = git.push params[:value]
         
-        flash[:notice] = "Thanks for the value Sir. Here's your key: #{key}"
+        flash[:notice] = "Thanks for the value. Here's your key: #{key}"
         flash[:highlight] = params[:value]
         redirect "/"
       end
 
       put "/update" do
         if revision = git.update(params[:key], params[:value])
-          flash[:notice] = "Great update Sir. The new revision is at: #{revision}"
+          flash[:notice] = "Great update. The new revision is at: #{revision}"
           flash[:highlight] = params[:value]
         else
-          flash[:alert] = "No can do. Please try something else Sir."
+          flash[:alert] = "No can do. Please don't try that again."
         end
         
         redirect "/"
@@ -107,9 +106,9 @@ module Git
 
       delete "/remove" do
         if revision = git.remove(params[:key])
-          flash[:notice] = "Sir, you removed: #{params[:key]}"
+          flash[:notice] = "You just removed: #{params[:key]}"
         else
-          flash[:alert] = "I'm afraid I can't do that Sir."
+          flash[:alert] = "I'm afraid I can't do that."
         end
         
         redirect "/"

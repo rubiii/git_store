@@ -5,8 +5,9 @@ body { background:#fff; color:#222; font:13px/21px helvetica,arial,sans-serif; m
 
 h1, h2, h3 { clear:both; font-family:Aller,helvetica,arial,sans-serif; }
   h1 { font-size:34px; }
+    h1 a:link, h1 a:visited, h1 a:hover, h1 a:active { color:#222; text-decoration:none; }
     h1 strong { color:#659833; font-weight:normal; }
-  h2 { border-top:4px solid #eee; font-size:20px; margin-top:2em; padding-top:0.5em; }
+  h2 { border-top:4px solid #eee; font-size:20px; margin-top:2em; padding-top:0.5em; }  
   h3 { font-size:16px; margin-top:2em; }
 
 a:link, a:visited { color:#4183C4; text-decoration:none; }
@@ -35,8 +36,9 @@ input { margin-right:15px; }
 #content { margin:0 auto; width:60em; }
 
 div.flash { border-width:1px; border-style:dashed; padding:1em 2em; }
-div.flash.notice { border-color:#659833; }
-div.flash.alert { border-color:#a00; }
 
 .notice, .notice code { color:#659833; }
+div.notice { border-color:#659833; }
+
 .alert, .alert code { color:#a00; }
+div.alert { border-color:#a00; }
