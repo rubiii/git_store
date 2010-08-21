@@ -1,20 +1,36 @@
-= Git::Store
+= Git Store
 
-A revision-controlling key/value store based on Git.
+A key/value store based on Git.
 
-== Inspired by
+== Inspiration
 
-* _why
-* Scott Chacon (http://video2010.scottishrubyconference.com/show_video/11/0)
+"Gittin Down to the Plumbing" by Scott Chacon (http://video2010.scottishrubyconference.com/show_video/11/0)
+
+== Installation
+
+The gem is available through {Rubygems}[http://rubygems.org/gems/git_store] and can be installed via:
+
+  $ gem install git_store
+
+== Runtime dependencies
+
+* {sinatra}[http://rubygems.org/gems/sinatra] ~> 1.0
+* {sinatra_more}[http://rubygems.org/gems/sinatra_more] ~> 0.3.40
+* {rack-flash}[http://rubygems.org/gems/rack-flash] ~> 0.1.1
+* {haml}[http://rubygems.org/gems/haml] ~> 3.0.15
 
 == Getting started
 
-Git::Store (the frontend) is based on Sinatra. Just use the config.ru file.
+Open a new Git Store:
 
-== Need to sleep
+  $ mkdir my_store
+  $ cd my_store
+  $ git_store
 
-Going to release more documentation and a chunky gem tomorrow.
+and then access the store at:
+
+  http://localhost:4567
 
 == _why?
 
-It's whyday 2010!
+Build for whyday 2010
