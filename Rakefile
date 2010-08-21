@@ -10,4 +10,16 @@ rescue LoadError
   end
 end
 
+config_ru = File.expand_path("../config.ru", __FILE__)
+
+desc "Launch Git Store via rackup"
+task :rackup do
+  `rackup #{config_ru} -p 4567`
+end
+
+desc "Launch Git Store via shotgun"
+task :shotgun do
+  `shotgun #{config_ru} -p 4567`
+end
+
 task :default => :spec
