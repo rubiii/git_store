@@ -4,21 +4,18 @@ module Git
   module Store
     class Revision
 
-      LatestRevision = ".latest_revision"
-
-      def self.latest
-        raise "Ok, so this is a little embarrassing. I need to ask you to create an empty #{LatestRevision} file " +
-          "in your current directoy and then try again. _why?" unless File.exist? LatestRevision
-        File.read LatestRevision unless File.zero? LatestRevision
+      def self.head
+        head = `git show-ref master --hash`.chomp
+        head unless head.empty?
       end
 
       def self.save(revision)
-        File.open(LatestRevision, "w+") { |file| file.write revision }
+        `git update-ref refs/heads/master #{revision}`
         revision
       end
 
       def self.new(revision = nil)
-        revision ||= latest
+        revision ||= head
         super revision if revision
       end
 

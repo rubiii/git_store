@@ -11,6 +11,8 @@ module Git
           return value unless value.empty?
         end
 
+        alias_method :exist?, :pull
+
         def push(value)
           return if value.empty?
           
@@ -21,18 +23,18 @@ module Git
         end
 
         def update(key, value)
-          return if key.empty? || value.empty? || !pull(key)
+          return if value.empty? || !exist?(key)
           
           new_key = hash_object value
           update_index :add, new_key, key
-          commit key, write_tree, Revision.latest
+          commit key, write_tree
         end
 
         def remove(key)
-          return if key.empty? || !pull(key)
+          return unless exist? key
           
           update_index :remove, key
-          commit key, write_tree, Revision.latest
+          commit key, write_tree
         end
 
         def revision(revision = nil)
@@ -57,7 +59,7 @@ module Git
 
         def show(args)
           key = args.pop
-          revision = args.first || Revision.latest
+          revision = args.first || Revision.head
           `git show #{revision}:#{key}`.chomp
         end
 
@@ -77,9 +79,9 @@ module Git
           `git write-tree`.chomp
         end
 
-        def commit(key, tree, parent = nil)
+        def commit(key, tree)
           cmd = "echo 'created #{key[0, 6]}' | git commit-tree #{tree}"
-          cmd << " -p #{parent}" if parent
+          cmd << " -p #{Revision.head}" if Revision.head
           Revision.save `#{cmd}`.chomp
         end
 
