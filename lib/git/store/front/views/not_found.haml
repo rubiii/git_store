@@ -1,5 +1,5 @@
 - content_for :header do
-  %h1= link_to "Ups, <strong>#{params[:revision][0, 6]}</strong> not found", "/"
+  %h1= link_to "Ups, <strong>#{@revision[0, 6]}</strong> not found", "/"
   %p I looked everywhere and I just can't find that revision.
 
 %h2 So what now?
