@@ -1,2 +1,8 @@
 #!/usr/bin/env ruby
+lib = File.expand_path("../../lib/", __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require "git/store/engine"
+Git::Store::Engine.init unless ARGV.delete("--reopen")
+
 `rackup #{File.expand_path("../../config.ru", __FILE__)} #{ARGV.join(" ")}`

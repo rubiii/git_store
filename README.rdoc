@@ -26,10 +26,12 @@ Open a new Git Store:
   $ mkdir my_store
   $ cd my_store
   $ git_store --port 4567
+  $ open http://localhost:4567
 
-and then access the store at:
+The Git Store will refuse to open if your current directory already contains a .git folder.
+But you can force the Git Store to reopen by passing the "--reopen" argument.
 
-  http://localhost:4567
+$ git_store --port 4567 --reopen
 
 == _why?
 

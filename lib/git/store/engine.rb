@@ -6,6 +6,16 @@ module Git
     module Engine
       class << self
 
+        def init
+          if File.directory? File.expand_path(".git", Dir.pwd)
+            abort "Your current directory (#{Dir.pwd}) already contains a .git folder.\n" +
+              "Make sure you really want to use reuse it and reopen the Git Store via:\n" +
+              "$ git_store --reopen"
+          else
+            `git init`
+          end
+        end
+
         def pull(*args)
           value = show args
           return value unless value.empty?
