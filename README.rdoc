@@ -25,7 +25,7 @@ Open a new Git Store:
 
   $ mkdir my_store
   $ cd my_store
-  $ git_store
+  $ git_store --port 4567
 
 and then access the store at:
 
@@ -34,3 +34,4 @@ and then access the store at:
 == _why?
 
 Build for whyday 2010
+Explore the code if you like to learn something about git plumbing

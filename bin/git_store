@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-`rackup #{File.expand_path("../../config.ru", __FILE__)}`
+`rackup #{File.expand_path("../../config.ru", __FILE__)} #{ARGV.join(" ")}`
