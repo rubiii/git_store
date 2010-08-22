@@ -38,8 +38,8 @@ module Git
         end
 
         def revision(revision = nil)
-          revision ||= Revision.head
-          Revision.new revision if commit? revision
+          revision = Revision.head unless revision
+          Revision.new revision if revision && commit?(revision)
         end
 
         def commit?(key)

@@ -81,7 +81,9 @@ module Git
 #      end
 
       get "/:revision?" do
-        if @revision = git.revision(params[:revision]) || !params[:revision]
+        @revision = git.revision params[:revision]
+        
+        if  @revision || !params[:revision]
           haml :index
         else
           @revision = params[:revision]
